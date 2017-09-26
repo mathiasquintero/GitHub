@@ -7,52 +7,72 @@
 
 import Sweeft
 
-public struct Repository: Codable {
-    public let id: Int
-    public let name: String
-    public let fullName: String
+public struct Repository: APIObjectWithDetail {
     
-    public let description: String?
-    public let homepage: String?
-    
-    public let language: String?
-    
-    public let forksCount: Int?
-    public let starsCount: Int?
-    public let watchersCount: Int?
-    public let openIssuesCount: Int?
-    
-    public let defaultBranch: String?
-    
-    public let size: Int?
-    
-    public let created: Date?
-    public let updated: Date?
-    public let pushed: Date?
-    
-    public enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case fullName = "full_name"
+    public struct Basic: APIBasic {
+        public let id: Int
+        public let name: String
+        public let fullName: String
+        public let description: String?
         
-        case description
-        case homepage
+        public let isPrivate: Bool
+        public let isFork: Bool
         
-        case language
-        
-        case forksCount = "forks_count"
-        case starsCount = "stargazers_count"
-        case watchersCount = "watchers_count"
-        case openIssuesCount = "open_issues_count"
-        
-        case defaultBranch = "default_branch"
-        
-        case size
-        
-        case created = "created_at"
-        case updated = "updated_at"
-        case pushed = "pushed_at"
+        public enum CodingKeys: String, CodingKey {
+            case id
+            case name
+            case fullName = "full_name"
+            case description
+            case isPrivate = "private"
+            case isFork = "fork"
+        }
     }
+    
+    public struct Detail: Codable {
+        public let homepage: String?
+        public let language: String?
+        
+        public let defaultBranch: String?
+        
+        public let size: Int?
+        
+        public let forksCount: Int
+        public let starsCount: Int
+        public let watchersCount: Int
+        public let openIssuesCount: Int
+        
+        public let created: Date
+        public let updated: Date
+        public let pushed: Date
+        
+        public enum CodingKeys: String, CodingKey {
+            case homepage
+            
+            case language
+            
+            case forksCount = "forks_count"
+            case starsCount = "stargazers_count"
+            case watchersCount = "watchers_count"
+            case openIssuesCount = "open_issues_count"
+            
+            case defaultBranch = "default_branch"
+            
+            case size
+            
+            case created = "created_at"
+            case updated = "updated_at"
+            case pushed = "pushed_at"
+        }
+    }
+    
+    public let basic: Basic
+    public let detail: Detail?
+    
+    public init(basic: Basic, detail: Detail?) {
+        self.basic = basic
+        self.detail = detail
+    }
+    
 }
 
 extension Repository {

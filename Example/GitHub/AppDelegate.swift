@@ -18,14 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        Organization.with(id: "BreakOutEvent", using: api).onResult { result in
+        Repository.all(using: api).onResult { result in
             print(result)
-            guard let value = result.value else {
-                return
-            }
-            value.members().onResult { result in
-                print(result)
-            }
         }
         
         return true
