@@ -1,0 +1,19 @@
+PODS:
+  - GitHub (0.1.0):
+    - Sweeft (~> 0.12.1)
+  - Sweeft (0.12.1)
+
+DEPENDENCIES:
+  - GitHub (from `../`)
+
+EXTERNAL SOURCES:
+  GitHub:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  GitHub: f919faec0159964588280567b3227d30998b3c93
+  Sweeft: c83adbea27b7f1c06111001289c38e1106e542f0
+
+PODFILE CHECKSUM: 13df27a59f7d6f02146b81c864461b7152124a55
+
+COCOAPODS: 1.2.1

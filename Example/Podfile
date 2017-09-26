@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'GitHub_Example' do
+  pod 'GitHub', :path => '../'
+
+  target 'GitHub_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
