@@ -96,4 +96,39 @@ extension Issue {
         }
     }
     
+    public struct Comment: Codable {
+        public let id: Int
+        public let body: String
+        public let user: User
+        public let created: Date
+        public let updated: Date
+        
+        public enum CodingKeys: String, CodingKey {
+            case id
+            case body
+            case user
+            case created = "created_at"
+            case updated = "updated_at"
+        }
+        
+        public struct Reactions: Codable {
+            public let thumbsUp: Int
+            public let thumbsDown: Int
+            public let laugh: Int
+            public let confused: Int
+            public let heart: Int
+            public let hooray: Int
+            
+            public enum CodingKeys: String, CodingKey {
+                case thumbsUp = "+1"
+                case thumbsDown = "-1"
+                case laugh
+                case confused
+                case heart
+                case hooray
+            }
+        }
+        
+    }
+    
 }
