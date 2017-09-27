@@ -18,26 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-//        api.gitignore(template: "Swift").onResult { result in
-//            print(result)
-//        }
-        
-
-        Repository.with(id: 95780130, using: api, maxCacheTime: .forever).onSuccess { repo in
-            repo.issues().onResult { result in
-                print(result)
-            }
-        }
-        
-//        User.with(id: "goldsborough", using: api, maxCacheTime: .forever).onSuccess { user in
-//            user.gists().onResult { result in
-//                print(result)
-//            }
-//        }
-//        .onError { error in
-//            print(error)
-//        }
-        
         return true
     }
 
@@ -62,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 
