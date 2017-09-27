@@ -106,6 +106,8 @@ extension Repository: GitHubObject {
         case labels
         case issues
         case milestones
+        case comments = "issues/comments"
+        case commentsOnIssue = "issues/{id}/comments"
     }
     
     public typealias API = GitHub
@@ -133,6 +135,14 @@ extension APIObject where Value == Repository {
     
     public func issues() -> Response<[Issue]> {
         return doDecodableRequest(to: .issues)
+    }
+    
+    public func comments() -> Response<[Issue.Comment]> {
+        return doDecodableRequest(to: .comments)
+    }
+    
+    public func comments(on issue: Issue) -> Response<[Issue.Comment]> {
+        return doDecodableRequest(to: .commentsOnIssue, arguments: ["id" : issue.number])
     }
     
     public func labels() -> Response<[Issue.Label]> {

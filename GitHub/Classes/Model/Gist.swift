@@ -146,11 +146,20 @@ extension Gist: APIObjectValue {
     
     public enum Endpoint: String, APIEndpoint {
         case commits
+        case forks
         case star
     }
     
     public static var endpoint: GitHubEndpoint {
         return .gists
+    }
+    
+}
+
+extension APIObject where Value == Gist {
+    
+    public func forks() -> Response<[Gist.Fork]> {
+        return doDecodableRequest(to: .forks)
     }
     
 }
