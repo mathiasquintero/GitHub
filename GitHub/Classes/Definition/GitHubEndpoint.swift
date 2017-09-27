@@ -8,6 +8,9 @@
 import Sweeft
 
 public enum GitHubEndpoint: String, APIEndpoint {
+    case markdown
+    case gitignoreTemplates = "/gitignore/templates"
+    case gitignore = "/gitignore/templates/{id}"
     case grants = "applications/grants"
     case authorizations = "authorizations"
     case organizations = "orgs"

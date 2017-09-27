@@ -24,3 +24,15 @@ public class GitHub: API {
 
 protocol GitHubObject: APIObjectValue where API == GitHub {}
 
+extension GitHub {
+    
+    public func render(markdown: String, mode: RenderMode = .markdown) -> Response<Data> {
+        
+        let body: JSON = [
+            "text": markdown,
+            "mode": mode.rawValue,
+        ]
+        return doDataRequest(with: .post, to: .markdown, body: body.data)
+    }
+    
+}
