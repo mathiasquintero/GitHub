@@ -52,6 +52,7 @@ extension Organization: GitHubObject {
         case members
         case outsideCollaborators = "outside_collaborators"
         case teams
+        case issues
     }
     
     public static var endpoint: GitHubEndpoint {
@@ -68,6 +69,10 @@ extension APIObject where Value == Organization {
     
     public func outsideCollaborators() -> Response<[APIObject<User>]> {
         return doRequest(to: .outsideCollaborators)
+    }
+    
+    public func issues() -> Response<[Issue]> {
+        return doDecodableRequest(to: .issues)
     }
     
 }
