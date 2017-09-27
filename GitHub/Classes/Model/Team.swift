@@ -56,6 +56,7 @@ extension Team: GitHubObject {
     
     public enum Endpoint: String, APIEndpoint {
         case repos
+        case members
     }
     
     public typealias API = GitHub
@@ -71,6 +72,10 @@ extension APIObject where Value == Team {
     
     public func repos() -> Response<[APIObject<Repository>]> {
         return doRequest(to: .repos)
+    }
+    
+    public func members() -> Response<[APIObject<User>]> {
+        return doRequest(to: .members)
     }
     
 }
