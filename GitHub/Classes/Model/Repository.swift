@@ -15,6 +15,8 @@ public struct Repository: APIObjectWithDetail {
         public let fullName: String
         public let description: String?
         
+        public let owner: Owner
+        
         public let isPrivate: Bool
         public let isFork: Bool
         
@@ -23,6 +25,7 @@ public struct Repository: APIObjectWithDetail {
             case name
             case fullName = "full_name"
             case description
+            case owner
             case isPrivate = "private"
             case isFork = "fork"
         }
