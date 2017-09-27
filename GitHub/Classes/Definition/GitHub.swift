@@ -35,4 +35,12 @@ extension GitHub {
         return doDataRequest(with: .post, to: .markdown, body: body.data)
     }
     
+    public func gitignores() -> Response<[String]> {
+        return doDecodableRequest(to: .gitignoreTemplates)
+    }
+    
+    public func gitignore(template name: String) -> Response<Gitignore> {
+        return doDecodableRequest(to: .gitignore, arguments: ["id" : name])
+    }
+    
 }
