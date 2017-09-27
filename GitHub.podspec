@@ -32,5 +32,5 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'Sweeft', '~> 0.12.1'
+  s.dependency 'Sweeft', :git => 'https://github.com/mathiasquintero/Sweeft.git'
 end
