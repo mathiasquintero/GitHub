@@ -18,14 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        User.with(id: "goldsborough", using: api, maxCacheTime: .forever).onSuccess { user in
-            user.gists().onResult { result in
+//        api.gitignore(template: "Swift").onResult { result in
+//            print(result)
+//        }
+        
+
+        Repository.with(id: 95780130, using: api, maxCacheTime: .forever).onSuccess { repo in
+            repo.issues().onResult { result in
                 print(result)
             }
         }
-        .onError { error in
-            print(error)
-        }
+        
+//        User.with(id: "goldsborough", using: api, maxCacheTime: .forever).onSuccess { user in
+//            user.gists().onResult { result in
+//                print(result)
+//            }
+//        }
+//        .onError { error in
+//            print(error)
+//        }
         
         return true
     }

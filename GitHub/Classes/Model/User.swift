@@ -13,11 +13,13 @@ public struct User: APIObjectWithDetail {
         public let id: String
         public let type: UserType
         public let avatar: URL?
+        public let isAdmin: Bool
         
         public enum CodingKeys: String, CodingKey {
             case id = "login"
             case type
             case avatar = "avatar_url"
+            case isAdmin = "site_admin"
         }
     }
     

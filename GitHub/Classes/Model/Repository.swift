@@ -7,6 +7,38 @@
 
 import Sweeft
 
+struct Indirect<T: Codable> {
+    
+    private final class Wrapper {
+        let value: T
+        init(_ value: T) {
+            self.value = value
+        }
+    }
+    
+    private let wrapper: Wrapper
+    
+    init(_ value: T) {
+        wrapper = Wrapper(value)
+    }
+    
+    var value: T {
+        return wrapper.value
+    }
+}
+
+extension Indirect: Codable {
+    
+    init(from decoder: Decoder) throws {
+        self.init(try .init(from: decoder))
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        try value.encode(to: encoder)
+    }
+    
+}
+
 public struct Repository: APIObjectWithDetail {
     
     public struct Basic: APIBasic {
@@ -37,12 +69,22 @@ public struct Repository: APIObjectWithDetail {
         
         public let defaultBranch: String?
         
-        public let size: Int?
+        private let parent: Indirect<Repository>?
         
+        public var forkedFrom: Repository? {
+            return parent?.value
+        }
+        
+        public let size: Int?
         public let forksCount: Int
         public let starsCount: Int
         public let watchersCount: Int
         public let openIssuesCount: Int
+        
+        public let hasIssues: Bool
+        public let hasWiki: Bool
+        public let hasPages: Bool
+        public let hasDownloads: Bool
         
         public let created: Date
         public let updated: Date
@@ -50,17 +92,23 @@ public struct Repository: APIObjectWithDetail {
         
         public enum CodingKeys: String, CodingKey {
             case homepage
-            
             case language
             
+            case defaultBranch = "default_branch"
+            
+            case parent
+            
+            case size
             case forksCount = "forks_count"
             case starsCount = "stargazers_count"
             case watchersCount = "watchers_count"
             case openIssuesCount = "open_issues_count"
             
-            case defaultBranch = "default_branch"
+            case hasIssues = "has_issues"
+            case hasWiki = "has_wiki"
+            case hasPages = "has_pages"
+            case hasDownloads = "has_downloads"
             
-            case size
             
             case created = "created_at"
             case updated = "updated_at"
