@@ -99,6 +99,7 @@ extension Repository: GitHubObject {
         case collaborators
         case branches
         case commits
+        case languages
     }
     
     public typealias API = GitHub
@@ -114,6 +115,10 @@ extension APIObject where Value == Repository {
     
     public func collaborators() -> Response<[APIObject<User>]> {
         return doRequest(to: .collaborators)
+    }
+    
+    public func languages() -> Response<[String : Int]> {
+        return doDecodableRequest(to: .languages)
     }
     
 }
