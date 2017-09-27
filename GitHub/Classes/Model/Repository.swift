@@ -96,7 +96,9 @@ extension Repository {
 extension Repository: GitHubObject {
     
     public enum Endpoint: String, APIEndpoint {
-        case collaborators = "collaborators"
+        case collaborators
+        case branches
+        case commits
     }
     
     public typealias API = GitHub

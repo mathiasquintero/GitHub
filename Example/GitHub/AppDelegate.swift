@@ -18,8 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        Repository.all(using: api).onResult { result in
-            print(result)
+        User.with(id: "goldsborough", using: api, maxCacheTime: .forever).onSuccess { user in
+            user.gists().onResult { result in
+                print(result)
+            }
+        }
+        .onError { error in
+            print(error)
         }
         
         return true

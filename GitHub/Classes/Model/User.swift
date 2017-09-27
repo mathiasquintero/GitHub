@@ -31,13 +31,18 @@ public struct User: APIObjectWithDetail {
         public let bio: String?
         
         public let company: String?
-        public let blog: URL?
+        public let blog: String?
         public let location: String?
+        
+        public let email: String?
+        
+        public let publicRepos: Int
+        public let publicGists: Int
         
         public let followers: Int
         public let following: Int
         
-        public let hireable: Bool
+        public let hireable: Bool?
         
         public let created: Date
         public let updated: Date
@@ -49,6 +54,10 @@ public struct User: APIObjectWithDetail {
             case company
             case blog
             case location
+            
+            case email
+            case publicRepos = "public_repos"
+            case publicGists = "public_gists"
             
             case followers
             case following
@@ -70,6 +79,18 @@ public struct User: APIObjectWithDetail {
     
 }
 
+extension User {
+    
+    public struct Email: Codable {
+        
+        public let email: String
+        public let verified: Bool
+        public let primary: Bool
+        public let visibility: Visibility
+    }
+    
+}
+
 extension User: GitHubObject {
     
     public typealias API = GitHub
@@ -79,6 +100,9 @@ extension User: GitHubObject {
     public enum Endpoint: String, APIEndpoint {
         case repos
         case orgs
+        case emails
+        case followers
+        case gists
     }
     
     public static var endpoint: GitHubEndpoint {
@@ -95,6 +119,14 @@ extension APIObject where Value == User {
     
     public func organizations() -> Response<[APIObject<Organization>]> {
         return doRequest(to: .orgs)
+    }
+    
+    public func followers() -> Response<[APIObject<Organization>]> {
+        return doRequest(to: .followers)
+    }
+    
+    public func gists() -> Response<[APIObject<Gist>]> {
+        return doRequest(to: .gists)
     }
     
 }

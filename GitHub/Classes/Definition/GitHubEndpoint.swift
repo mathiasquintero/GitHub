@@ -11,6 +11,7 @@ public enum GitHubEndpoint: String, APIEndpoint {
     case grants = "applications/grants"
     case authorizations = "authorizations"
     case organizations = "orgs"
+    case gists
     case repos = "repositories"
-    case users = "users"
+    case users
 }
