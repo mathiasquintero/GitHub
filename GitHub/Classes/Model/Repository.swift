@@ -100,6 +100,9 @@ extension Repository: GitHubObject {
         case branches
         case commits
         case languages
+        case labels
+        case issues
+        case milestones
     }
     
     public typealias API = GitHub
@@ -117,8 +120,24 @@ extension APIObject where Value == Repository {
         return doRequest(to: .collaborators)
     }
     
+    public func branches() -> Response<[Branch]> {
+        return doDecodableRequest(to: .branches)
+    }
+    
     public func languages() -> Response<[String : Int]> {
         return doDecodableRequest(to: .languages)
+    }
+    
+    public func issues() -> Response<[Issue]> {
+        return doDecodableRequest(to: .issues)
+    }
+    
+    public func labels() -> Response<[Issue.Label]> {
+        return doDecodableRequest(to: .labels)
+    }
+    
+    public func milestones() -> Response<[Issue.Milestone]> {
+        return doDecodableRequest(to: .milestones)
     }
     
 }
