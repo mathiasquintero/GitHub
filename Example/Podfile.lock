@@ -1,19 +1,27 @@
 PODS:
   - GitHub (0.1.0):
-    - Sweeft (~> 0.12.1)
+    - Sweeft (~> 0.12)
   - Sweeft (0.12.1)
 
 DEPENDENCIES:
   - GitHub (from `../`)
+  - Sweeft (from `https://github.com/mathiasquintero/Sweeft.git`)
 
 EXTERNAL SOURCES:
   GitHub:
     :path: "../"
+  Sweeft:
+    :git: https://github.com/mathiasquintero/Sweeft.git
+
+CHECKOUT OPTIONS:
+  Sweeft:
+    :commit: f09e12ecb30b98ec4014c166061f53840c2dcf88
+    :git: https://github.com/mathiasquintero/Sweeft.git
 
 SPEC CHECKSUMS:
-  GitHub: f919faec0159964588280567b3227d30998b3c93
-  Sweeft: c83adbea27b7f1c06111001289c38e1106e542f0
+  GitHub: c7ad48255ef43f8434a5c52a0fecd982af268d8b
+  Sweeft: fa73622b7d965f59a1198b5ad3161376765b410b
 
-PODFILE CHECKSUM: 13df27a59f7d6f02146b81c864461b7152124a55
+PODFILE CHECKSUM: dd2b9ad312cdbd59bcbb20305900197850247c51
 
 COCOAPODS: 1.2.1

@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'GitHub_Example' do
   pod 'GitHub', :path => '../'
+  pod 'Sweeft', :git => 'https://github.com/mathiasquintero/Sweeft.git'
 
   target 'GitHub_Tests' do
     inherit! :search_paths
