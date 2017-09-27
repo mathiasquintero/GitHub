@@ -13,6 +13,8 @@ public enum GitHubEndpoint: String, APIEndpoint {
     case gitignoreTemplates = "/gitignore/templates"
     case gitignore = "/gitignore/templates/{id}"
     
+    case repoByName = "repos/{name}"
+    
     case grants = "applications/grants"
     case authorizations = "authorizations"
     case organizations = "orgs"

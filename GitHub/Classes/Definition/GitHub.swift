@@ -44,3 +44,11 @@ extension GitHub {
     }
     
 }
+
+extension GitHub {
+    
+    public func repository(with name: String) -> Response<APIObject<Repository>> {
+        return doAPIObjectRequest(endpoint: .repoByName, arguments: ["name" : name])
+    }
+    
+}

@@ -12,7 +12,7 @@ Say you're looking at Freddy.swift and want to know what other Swift projects th
 
 ```Swift
 let api = GitHub(...)
-let members = Repository.with(id: 95780130, using: api).flatMap { $0.collaborators() }
+let members = api.repository(with: "bignerdranch/Freddy").flatMap { $0.collaborators() }
 let repositories = members.flatMap { $0.map({ $0.repos() }).bulk.flattened }
 let swiftRepositories = repositories.map { $0.filter { $0.value.detail?.language == "Swift" } }
 
